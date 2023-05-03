@@ -18,6 +18,7 @@ app.get('/ee', (req, res) => {
 });
 app.get('/test',(req,res)=>{
     console.log("worked");
+    res.send("worked successfully");
     
 });
 
