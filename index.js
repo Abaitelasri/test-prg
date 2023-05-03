@@ -25,31 +25,34 @@ app.get('/test',(req,res)=>{
 
 // route for inserting data into the database
 app.post('/insertData', (req, res) => {
-    var a;
-    var dir;
-    if (req.body.meta[0].nodes[0].lines[0].cur_dir1_objects[0]){
-         a = req.body.meta[0].nodes[0].lines[0].cur_dir1_objects[0];
-         dir='dir1';
- 
-    }
-    else{
-          a = req.body.meta[0].nodes[0].lines[0].cur_dir2_objects[0];
-          dir='dir2';
+  console.log('Request body:', req.body);
 
-    }
- 
-    const timestamp = req.body.meta[0].timestamp;
-    
+  var a;
+  var dir;
+  if (req.body.meta[0].nodes[0].lines[0].cur_dir1_objects[0]) {
+    a = req.body.meta[0].nodes[0].lines[0].cur_dir1_objects[0];
+    dir = 'dir1';
+  } else {
+    a = req.body.meta[0].nodes[0].lines[0].cur_dir2_objects[0];
+    dir = 'dir2';
+  }
 
-  
-  // insert data into the database
+  const timestamp = req.body.meta[0].timestamp;
+
+  console.log('Inserting data into database...');
   const sql = `INSERT INTO people (id,date,etat) VALUES ('${a}','${timestamp}','${dir}')`;
+  console.log('SQL query:', sql);
   connection.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) {
+      console.error('Error inserting data into database:', err);
+      res.status(500).send('Error inserting data into database');
+      return;
+    }
     console.log('Data inserted successfully');
     res.send('Data inserted successfully');
   });
 });
+
 // start the server
 app.listen(8080 || process.env.PORT, () => {
   console.log('Server listening on port ');
