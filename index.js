@@ -1,10 +1,10 @@
 const connection = require('./connection.js');
 const express = require('express');
-const bodyParser=require('body-parser');
+
 const app = express();
 
 // add middleware to parse request body
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.get('/ee', (req, res) => {
   connection.query('SELECT * FROM people', (err, rows) => {
