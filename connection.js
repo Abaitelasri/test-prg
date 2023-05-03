@@ -1,22 +1,24 @@
 const mysql = require('mysql2');
 
+console.log('Creating database connection pool...');
 
-console.log('Connecting to database...');
-var mysqlConnection = mysql.createConnection({
-   host:process.env.DB_HOST,
-   user:process.env.DB_USERNAME,
-   password:process.env.DB_PASSWORD,
-   database:process.env.DB_DBNAME,
-   waitForConnection: true,
-   queueLimit:0
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DBNAME,
+  waitForConnections: true,
+  connectionLimit: 10, // set a reasonable limit for the number of connections in the pool
+  queueLimit: 100 // set a reasonable limit for the number of queued connections
 });
 
-mysqlConnection.connect((err)=>{
-    if(err){
-        console.log('Error connecting to database: ' + err.stack);
-        return;
-    }
-    console.log('Connected to database with threadId: ' + mysqlConnection.threadId);
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error('Error connecting to database:', err);
+    return;
+  }
+  console.log('Connected to database with threadId:', connection.threadId);
+  connection.release(); // Release the connection back to the pool when done
 });
 
-module.exports=mysqlConnection;
+module.exports = pool;
