@@ -44,6 +44,6 @@ app.post('/insertData', (req, res) => {
   });
 });
 // start the server
-app.listen(3000, () => {
+app.listen(8080 || process.env.PORT, () => {
   console.log('Server listening on port 3000');
 });
