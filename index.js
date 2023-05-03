@@ -16,10 +16,10 @@ app.get('/ee', (req, res) => {
     res.send(rows);
   });
 });
-app.get('/test',(req,res)=>{
+app.post('/test',(req,res)=>{
     console.log("worked");
   
-      const sql = `INSERT INTO people (id,date,etat) VALUES ('123','2023-05-03','aze')`;
+      const sql = `INSERT INTO people (id,date,etat) VALUES ('11123','2023-05-03','aze')`;
   console.log('SQL query:', sql);
   connection.query(sql, (err, result) => {
     if (err) {
