@@ -2,6 +2,8 @@ const connection = require('./connection.js');
 const express = require('express');
 
 const app = express();
+const moment = require('moment');
+
 
 // add middleware to parse request body
 app.use(express.json());
@@ -48,7 +50,8 @@ app.post('/insertData', (req, res) => {
     dir = 'dir2';
   }
 
-  const timestamp = req.body.meta[0].timestamp;
+  const timestamp = moment(req.body.meta[0].timestamp).format('YYYY-MM-DD HH:mm:ss');
+
 
   console.log('Inserting data into database...');
   const sql = `INSERT INTO people (id,date,etat) VALUES ('${a}','${timestamp}','${dir}')`;
@@ -56,7 +59,7 @@ app.post('/insertData', (req, res) => {
   connection.query(sql, (err, result) => {
     if (err) {
       console.error(err);
-      res.status(500).send(err);
+      res.status(500).send('Error inserting data into database');
       return;
     }
     console.log('Data inserted successfully');
