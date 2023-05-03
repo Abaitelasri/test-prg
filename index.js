@@ -55,8 +55,8 @@ app.post('/insertData', (req, res) => {
   console.log('SQL query:', sql);
   connection.query(sql, (err, result) => {
     if (err) {
-      console.error('Error inserting data into database:', err);
-      res.status(500).send('Error inserting data into database');
+      console.error(err);
+      res.status(500).send(err);
       return;
     }
     console.log('Data inserted successfully');
