@@ -19,6 +19,17 @@ app.get('/ee', (req, res) => {
 app.get('/test',(req,res)=>{
     console.log("worked");
     res.send("worked successfully");
+      const sql = `INSERT INTO people (id,date,etat) VALUES ('123','2023-05-03','aze')`;
+  console.log('SQL query:', sql);
+  connection.query(sql, (err, result) => {
+    if (err) {
+      console.error('Error inserting data into database:', err);
+      res.status(500).send('Error inserting data into database');
+      return;
+    }
+    console.log('Data inserted successfully');
+    res.send('Data inserted successfully');
+  });
     
 });
 
