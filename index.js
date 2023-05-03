@@ -14,6 +14,10 @@ app.get('/ee',(req,res)=>{
   
     });
 });
+app.get('/test',(req,res)=>{
+    console.log("worked");
+    
+});
 
 
 // route for inserting data into the database

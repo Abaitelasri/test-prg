@@ -21,4 +21,4 @@ pool.getConnection((err, connection) => {
   connection.release(); // Release the connection back to the pool when done
 });
 
-module.exports = pool;
+module.exports = pool.promise();
