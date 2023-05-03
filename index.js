@@ -5,14 +5,16 @@ const app = express();
 
 // add middleware to parse request body
 app.use(bodyParser.json());
-app.get('/ee',(req,res)=>{
-    console.log(req.body.meta[0].nodes[0].lines[0].cur_dir2_objects[0]);
-    connection.query('select * from people',(err,row)=>{
-        if (err) throw err;
-    console.log('Data inserted successfully');
-    res.send('Data inserted successfully');
-  
-    });
+
+app.get('/ee', (req, res) => {
+  connection.query('SELECT * FROM people', (err, rows) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return;
+    }
+    console.log('Query result:', rows);
+    res.send(rows);
+  });
 });
 app.get('/test',(req,res)=>{
     console.log("worked");
@@ -49,5 +51,5 @@ app.post('/insertData', (req, res) => {
 });
 // start the server
 app.listen(8080 || process.env.PORT, () => {
-  console.log('Server listening on port 3000');
+  console.log('Server listening on port ');
 });
