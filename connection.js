@@ -19,4 +19,4 @@ mysqlConnection.connect((err)=>{
     console.log('Connected to database with threadId: ' + mysqlConnection.threadId);
 });
 
-module.exports=mysqlConnection;
+module.exports=mysqlConnection.promise();
