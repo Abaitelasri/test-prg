@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 
 console.log('Connecting to database...');
-var mysqlConnection = mysql.createPool({
+var mysqlConnection = mysql.createConnection({
    host:process.env.DB_HOST,
    user:process.env.DB_USERNAME,
    password:process.env.DB_PASSWORD,
@@ -19,4 +19,4 @@ mysqlConnection.connect((err)=>{
     console.log('Connected to database with threadId: ' + mysqlConnection.threadId);
 });
 
-module.exports=mysqlConnection.promise();
+module.exports=mysqlConnection;
