@@ -23,7 +23,7 @@ app.post('/test',(req,res)=>{
   console.log('SQL query:', sql);
   connection.query(sql, (err, result) => {
     if (err) {
-      console.error('Error inserting data into database:', err);
+      console.error(err);
       res.status(500).send(err);
       return;
     }
