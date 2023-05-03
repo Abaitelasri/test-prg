@@ -18,7 +18,7 @@ app.get('/ee', (req, res) => {
 });
 app.get('/test',(req,res)=>{
     console.log("worked");
-    res.send("worked successfully");
+  
       const sql = `INSERT INTO people (id,date,etat) VALUES ('123','2023-05-03','aze')`;
   console.log('SQL query:', sql);
   connection.query(sql, (err, result) => {
