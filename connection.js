@@ -10,8 +10,8 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DBNAME,
   waitForConnections: true,
-  connectionLimit: 10, // set a reasonable limit for the number of connections in the pool
-  queueLimit: 0 // set a reasonable limit for the number of queued connections
+  connectionLimit: 10, 
+  queueLimit: 0
 });
 
 pool.getConnection((err, connection) => {
@@ -20,7 +20,7 @@ pool.getConnection((err, connection) => {
     return;
   }
   console.log('Connected to database with threadId:', connection.threadId);
-  connection.release(); // Release the connection back to the pool when done
+  connection.release(); 
 });
 
 module.exports = pool;
