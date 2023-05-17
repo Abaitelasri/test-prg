@@ -88,8 +88,7 @@ app.post('/door', (req, res) => {
     dir = 'dir2';
   }
 
-  const timestamp = moment(req.body.meta[0].timestamp).format('YYYY-MM-DD HH:mm:ss');
-
+        const timestamp = new Date(req.body.meta[0].timestamp).toISOString().slice(0, 19).replace('T', ' ');
 
   console.log(a);
   const sql = `INSERT INTO people (id,date,etat,place) VALUES ('${a}','${timestamp}','${dir}','${req.body.meta[0].nodes[0].lines[1].label}')`;
