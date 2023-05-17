@@ -57,7 +57,8 @@ app.post('/bathroom',(req,res)=>{
         a="The bathroom is empty";
       }
 
-      const timestamp = req.body.meta[0].timestamp;
+        const timestamp = new Date(req.body.meta[0].timestamp).toISOString().slice(0, 19).replace('T', ' ');
+
 
     const sql = `INSERT INTO people (id,date,etat,place) VALUES ('${id}','${timestamp}','${dir}','${req.body.meta[0].nodes[0].lines[0].label}')`;
   console.log('SQL query:', sql);
