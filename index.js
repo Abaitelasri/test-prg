@@ -53,7 +53,7 @@ app.post('/bathroom',(req,res)=>{
       
       } else {
         id = req.body.meta[0].nodes[0].lines[0].cur_dir2_objects[0];
-        dir = req.body.meta[0].nodes[0].lines[0].dir1_label;
+        dir = req.body.meta[0].nodes[0].lines[0].dir2_label;
         a="The bathroom is empty";
       }
 
