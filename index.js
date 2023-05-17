@@ -48,12 +48,12 @@ app.post('/bathroom',(req,res)=>{
       let a;
       if (req.body.meta[0].nodes[0].lines[0].cur_dir1_objects[0]) {
         id = req.body.meta[0].nodes[0].lines[0].cur_dir1_objects[0];
-        dir = 'dir1';
+        dir = req.body.meta[0].nodes[0].lines[0].dir1_label;
         a="The bathroom isn't empty";
       
       } else {
         id = req.body.meta[0].nodes[0].lines[0].cur_dir2_objects[0];
-        dir = 'dir2';
+        dir = req.body.meta[0].nodes[0].lines[0].dir1_label;
         a="The bathroom is empty";
       }
 
@@ -82,10 +82,10 @@ app.post('/door', (req, res) => {
   var dir;
   if (req.body.meta[0].nodes[0].lines[1].cur_dir1_objects[0]) {
     a = req.body.meta[0].nodes[0].lines[1].cur_dir1_objects[0];
-    dir = 'dir1';
+    dir = req.body.meta[0].nodes[0].lines[0].dir1_label;
   } else {
     a = req.body.meta[0].nodes[0].lines[1].cur_dir2_objects[0];
-    dir = 'dir2';
+    dir = req.body.meta[0].nodes[0].lines[0].dir1_label;
   }
 
         const timestamp = new Date(req.body.meta[0].timestamp).toISOString().slice(0, 19).replace('T', ' ');
