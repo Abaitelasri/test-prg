@@ -61,7 +61,7 @@ app.post('/bathroom',(req,res)=>{
 
 
     const sql = `INSERT INTO people (id,date,etat,place) VALUES ('${id}','${timestamp}','${dir}','${req.body.meta[0].nodes[0].lines[0].label}')`;
-  console.log('SQL query:', sql);
+
   connection.query(sql, (err, result) => {
     if (err) {
       console.error(err);
@@ -92,7 +92,7 @@ app.post('/door', (req, res) => {
 
   console.log(a);
   const sql = `INSERT INTO people (id,date,etat,place) VALUES ('${a}','${timestamp}','${dir}','${req.body.meta[0].nodes[0].lines[1].label}')`;
-  console.log('SQL query:', sql);
+
   connection.query(sql, (err, result) => {
     if (err) {
       console.error(err);
